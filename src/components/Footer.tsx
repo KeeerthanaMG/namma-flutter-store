@@ -18,7 +18,7 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-muted-foreground mb-4 max-w-md">
-              Official merchandise store for the Namma Flutter Chennai community. 
+              Official merchandise store for the Namma Flutter Chennai community.
               Wear your Flutter pride with our exclusive collection of hoodies and t-shirts.
             </p>
             <div className="flex items-center gap-4">
@@ -42,18 +42,18 @@ const Footer = () => {
             <h4 className="font-heading font-semibold text-foreground mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <Link to="/products/hoodies" className="text-muted-foreground hover:text-primary transition-colors">
-                  Hoodies
-                </Link>
-              </li>
-              <li>
-                <Link to="/products/tshirts" className="text-muted-foreground hover:text-primary transition-colors">
-                  T-Shirts
+                <Link to="/products" className="text-muted-foreground hover:text-primary transition-colors">
+                  All Products
                 </Link>
               </li>
               <li>
                 <Link to="/fluttercon" className="text-muted-foreground hover:text-primary transition-colors">
                   FlutterCon 2025
+                </Link>
+              </li>
+              <li>
+                <Link to="/wishlist" className="text-muted-foreground hover:text-primary transition-colors">
+                  Wishlist
                 </Link>
               </li>
               <li>

@@ -34,7 +34,7 @@ const Cart = () => {
               <p className="text-muted-foreground mb-8">
                 Looks like you haven't added any Flutter merch yet
               </p>
-              <Link to="/products/hoodies">
+              <Link to="/products">
                 <Button className="gradient-flutter text-primary-foreground border-0 shadow-flutter">
                   <ShoppingBag className="h-5 w-5 mr-2" />
                   Start Shopping
@@ -51,9 +51,9 @@ const Cart = () => {
   return (
     <>
       <Helmet>
-        <title>Cart ({totalItems}) - Flutter Store</title>
+        <title>{`Cart (${totalItems || 0}) - Flutter Store`}</title>
       </Helmet>
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/30">
         <Navbar />
         <main className="flex-1 py-8">
           <div className="container mx-auto px-4">
@@ -67,17 +67,17 @@ const Cart = () => {
                 {items.map((item, index) => (
                   <div
                     key={`${item.id}-${item.size}-${item.color}`}
-                    className="flutter-card flex flex-col sm:flex-row gap-4 animate-fade-in"
+                    className="flutter-card flex flex-col sm:flex-row gap-4 animate-fade-in-up hover:shadow-hover transition-all"
                     style={{ animationDelay: `${index * 50}ms` }}
                   >
                     {/* Image */}
-                    <div className="w-full sm:w-24 h-32 sm:h-24 rounded-xl overflow-hidden bg-muted flex-shrink-0">
+                    <Link to={`/product/${item.id}`} className="w-full sm:w-32 h-40 sm:h-32 rounded-xl overflow-hidden bg-muted flex-shrink-0">
                       <img
                         src={item.image}
                         alt={item.name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-300"
                       />
-                    </div>
+                    </Link>
 
                     {/* Details */}
                     <div className="flex-1">
@@ -157,10 +157,10 @@ const Cart = () => {
                       <span>Subtotal ({totalItems} items)</span>
                       <span>₹{totalPrice.toLocaleString()}</span>
                     </div>
-                    <div className="flex justify-between text-muted-foreground">
+                    {/* <div className="flex justify-between text-muted-foreground">
                       <span>Shipping</span>
-                      <span className="text-green-600">Free</span>
-                    </div>
+                      <span className="text-green-600"></span>
+                    </div> */}
                     <div className="border-t border-border pt-4">
                       <div className="flex justify-between font-heading font-bold text-lg text-foreground">
                         <span>Total</span>
@@ -178,9 +178,9 @@ const Cart = () => {
                     <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
                   </Button>
 
-                  <p className="text-center text-sm text-muted-foreground mt-4">
+                  {/* <p className="text-center text-sm text-muted-foreground mt-4">
                     Free shipping on all orders!
-                  </p>
+                  </p> */}
                 </div>
               </div>
             </div>

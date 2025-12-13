@@ -28,7 +28,7 @@ const FeaturedProducts = () => {
         </div>
 
         <div className="text-center">
-          <Link to="/products/hoodies">
+          <Link to="/products">
             <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground group">
               View All Products
               <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />

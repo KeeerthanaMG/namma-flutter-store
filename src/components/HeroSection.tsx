@@ -35,23 +35,23 @@ const HeroSection = () => {
               <span className="text-gradient-flutter">Flutter</span>{' '}
               Pride
             </h1>
-            
+
             <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto lg:mx-0">
-              Official merchandise from the Namma Flutter Chennai community. 
+              Official merchandise from the Namma Flutter Chennai community.
               Premium hoodies and t-shirts designed for Flutter enthusiasts.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Link to="/products/hoodies">
+              <Link to="/products">
                 <Button size="lg" className="gradient-flutter text-primary-foreground border-0 shadow-flutter hover:shadow-hover transition-all group w-full sm:w-auto">
                   <Sparkles className="h-5 w-5 mr-2 group-hover:animate-wiggle" />
-                  Shop Hoodies
+                  Explore Products
                   <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
-              <Link to="/products/tshirts">
+              <Link to="/fluttercon">
                 <Button size="lg" variant="outline" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all w-full sm:w-auto">
-                  Browse T-Shirts
+                  FlutterCon 2025
                 </Button>
               </Link>
             </div>

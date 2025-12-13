@@ -10,6 +10,7 @@ import { cn } from '@/lib/utils';
 export interface FilterState {
   sizes: string[];
   colors: string[];
+  categories: string[];
   priceRange: [number, number];
   showNew: boolean;
   showBestsellers: boolean;
@@ -51,6 +52,15 @@ const ProductFilters = ({
     onFilterChange(newFilters);
   };
 
+  const handleCategoryToggle = (category: string) => {
+    const newCategories = localFilters.categories.includes(category)
+      ? localFilters.categories.filter((c) => c !== category)
+      : [...localFilters.categories, category];
+    const newFilters = { ...localFilters, categories: newCategories };
+    setLocalFilters(newFilters);
+    onFilterChange(newFilters);
+  };
+
   const handlePriceChange = (value: number[]) => {
     const newFilters = { ...localFilters, priceRange: [value[0], value[1]] as [number, number] };
     setLocalFilters(newFilters);
@@ -67,6 +77,7 @@ const ProductFilters = ({
     const resetFilters: FilterState = {
       sizes: [],
       colors: [],
+      categories: [],
       priceRange: [0, maxPrice],
       showNew: false,
       showBestsellers: false,
@@ -79,6 +90,7 @@ const ProductFilters = ({
   const activeFilterCount =
     localFilters.sizes.length +
     localFilters.colors.length +
+    localFilters.categories.length +
     (localFilters.priceRange[0] > 0 || localFilters.priceRange[1] < maxPrice ? 1 : 0) +
     (localFilters.showNew ? 1 : 0) +
     (localFilters.showBestsellers ? 1 : 0) +
@@ -86,6 +98,28 @@ const ProductFilters = ({
 
   const FilterContent = () => (
     <div className="space-y-6">
+      {/* Category Filter */}
+      <div>
+        <h4 className="font-heading font-semibold text-foreground mb-3">Category</h4>
+        <div className="space-y-2">
+          {['hoodie', 'tshirt'].map((category) => (
+            <div key={category} className="flex items-center gap-2">
+              <Checkbox
+                id={`category-${category}`}
+                checked={localFilters.categories.includes(category)}
+                onCheckedChange={() => handleCategoryToggle(category)}
+              />
+              <Label
+                htmlFor={`category-${category}`}
+                className="text-sm cursor-pointer capitalize"
+              >
+                {category === 'tshirt' ? 'T-Shirts' : 'Hoodies'}
+              </Label>
+            </div>
+          ))}
+        </div>
+      </div>
+
       {/* Quick Filters */}
       <div>
         <h4 className="font-heading font-semibold text-foreground mb-3">Quick Filters</h4>
