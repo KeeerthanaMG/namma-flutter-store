@@ -1,13 +1,29 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { Helmet } from 'react-helmet-async';
+import Navbar from '@/components/Navbar';
+import HeroSection from '@/components/HeroSection';
+import FeaturedProducts from '@/components/FeaturedProducts';
+import CategorySection from '@/components/CategorySection';
+import FlutterConBanner from '@/components/FlutterConBanner';
+import Footer from '@/components/Footer';
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <>
+      <Helmet>
+        <title>Flutter Store - Official Namma Flutter Chennai Merchandise</title>
+        <meta name="description" content="Shop premium Flutter hoodies, t-shirts and merchandise from Namma Flutter Chennai community. Get exclusive FlutterCon 2025 collection." />
+      </Helmet>
+      <div className="min-h-screen flex flex-col">
+        <Navbar />
+        <main className="flex-1">
+          <HeroSection />
+          <FeaturedProducts />
+          <CategorySection />
+          <FlutterConBanner />
+        </main>
+        <Footer />
       </div>
-    </div>
+    </>
   );
 };
 
