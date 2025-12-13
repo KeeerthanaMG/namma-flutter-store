@@ -26,8 +26,12 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-xl gradient-flutter flex items-center justify-center shadow-flutter transition-transform group-hover:scale-110 group-hover:rotate-12">
-              <span className="text-primary-foreground font-heading font-bold text-lg">F</span>
+            <div className="w-10 h-10 rounded-xl flex items-center justify-center transition-transform group-hover:scale-110">
+              <img
+                src="/flutter.png"
+                alt="Flutter Logo"
+                className="w-full h-full object-contain"
+              />
             </div>
             <div className="hidden sm:block">
               <h1 className="font-heading font-bold text-lg text-foreground leading-tight">
@@ -63,12 +67,12 @@ const Navbar = () => {
                 size="icon"
                 className="relative hover:bg-primary/10"
               >
-                <Heart className="h-5 w-5" />
+                {/* <Heart className="h-5 w-5" />
                 {wishlistItems > 0 && (
                   <span className="absolute -top-1 -right-1 w-5 h-5 bg-destructive text-destructive-foreground text-xs font-bold rounded-full flex items-center justify-center animate-bounce-in">
                     {wishlistItems}
                   </span>
-                )}
+                )} */}
               </Button>
             </Link>
 

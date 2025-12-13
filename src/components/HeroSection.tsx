@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Sparkles, Calendar } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const HeroSection = () => {
@@ -75,40 +75,16 @@ const HeroSection = () => {
             </div>
           </div>
 
-          {/* Hero Image/Illustration Area */}
+          {/* Hero Image */}
           <div className="relative animate-fade-in" style={{ animationDelay: '200ms' }}>
             <div className="relative aspect-square max-w-lg mx-auto">
-              {/* Main Card */}
               <div className="absolute inset-4 rounded-3xl gradient-flutter opacity-20 blur-2xl animate-pulse-glow" />
-              <div className="relative bg-card rounded-3xl shadow-card overflow-hidden border border-border">
-                <div className="aspect-square bg-muted flex items-center justify-center p-8">
-                  <div className="text-center">
-                    <div className="w-32 h-32 mx-auto mb-6 rounded-full gradient-flutter flex items-center justify-center shadow-flutter animate-float">
-                      <span className="text-6xl font-heading font-bold text-primary-foreground">F</span>
-                    </div>
-                    <h3 className="font-heading font-bold text-xl text-foreground mb-2">Flutter Store</h3>
-                    <p className="text-muted-foreground">Premium Merchandise</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating Elements */}
-              <div className="absolute -top-4 -right-4 bg-card rounded-xl shadow-card p-3 animate-float border border-border" style={{ animationDelay: '0.5s' }}>
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-secondary flex items-center justify-center">
-                    <Sparkles className="h-4 w-4 text-secondary-foreground" />
-                  </div>
-                  <span className="font-semibold text-sm text-foreground">New Arrivals</span>
-                </div>
-              </div>
-
-              <div className="absolute -bottom-4 -left-4 bg-card rounded-xl shadow-card p-3 animate-float border border-border" style={{ animationDelay: '1s' }}>
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 rounded-lg bg-accent flex items-center justify-center">
-                    <Calendar className="h-4 w-4 text-accent-foreground" />
-                  </div>
-                  <span className="font-semibold text-sm text-foreground">FlutterCon 2025</span>
-                </div>
+              <div className="relative rounded-3xl overflow-hidden shadow-card border border-border">
+                <img
+                  src="/hero-section-image.jpg"
+                  alt="Flutter Store Merchandise"
+                  className="w-full h-full object-cover"
+                />
               </div>
             </div>
           </div>

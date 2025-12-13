@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ShoppingCart, Trash2, Minus, Plus, ArrowRight, ShoppingBag } from 'lucide-react';
@@ -6,9 +7,11 @@ import Footer from '@/components/Footer';
 import { useCart } from '@/contexts/CartContext';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
+import CheckoutDialog from '@/components/CheckoutDialog';
 
 const Cart = () => {
   const { items, removeFromCart, updateQuantity, totalItems, totalPrice, clearCart } = useCart();
+  const [checkoutOpen, setCheckoutOpen] = useState(false);
 
   const handleRemove = (id: string, size: string, color: string, name: string) => {
     removeFromCart(id, size, color);
@@ -157,10 +160,6 @@ const Cart = () => {
                       <span>Subtotal ({totalItems} items)</span>
                       <span>₹{totalPrice.toLocaleString()}</span>
                     </div>
-                    {/* <div className="flex justify-between text-muted-foreground">
-                      <span>Shipping</span>
-                      <span className="text-green-600"></span>
-                    </div> */}
                     <div className="border-t border-border pt-4">
                       <div className="flex justify-between font-heading font-bold text-lg text-foreground">
                         <span>Total</span>
@@ -172,15 +171,15 @@ const Cart = () => {
                   <Button
                     size="lg"
                     className="w-full gradient-flutter text-primary-foreground border-0 shadow-flutter hover:shadow-hover group"
-                    onClick={() => toast.info('Checkout coming soon!')}
+                    onClick={() => setCheckoutOpen(true)}
                   >
                     Proceed to Checkout
                     <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
                   </Button>
 
-                  {/* <p className="text-center text-sm text-muted-foreground mt-4">
-                    Free shipping on all orders!
-                  </p> */}
+                  <p className="text-center text-sm text-muted-foreground mt-4">
+                    🚀 Complete your order via WhatsApp
+                  </p>
                 </div>
               </div>
             </div>
@@ -188,6 +187,9 @@ const Cart = () => {
         </main>
         <Footer />
       </div>
+
+      {/* Checkout Dialog */}
+      <CheckoutDialog open={checkoutOpen} onOpenChange={setCheckoutOpen} />
     </>
   );
 };
