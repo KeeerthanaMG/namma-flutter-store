@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ShoppingCart, Trash2, Minus, Plus, ArrowRight, ShoppingBag } from 'lucide-react';
@@ -12,6 +12,10 @@ import CheckoutDialog from '@/components/CheckoutDialog';
 const Cart = () => {
   const { items, removeFromCart, updateQuantity, totalItems, totalPrice, clearCart } = useCart();
   const [checkoutOpen, setCheckoutOpen] = useState(false);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   const handleRemove = (id: string, size: string, color: string, name: string) => {
     removeFromCart(id, size, color);

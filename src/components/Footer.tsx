@@ -4,7 +4,7 @@ import { Heart, Twitter, Instagram, Linkedin, Github } from 'lucide-react';
 const Footer = () => {
   return (
     <footer className="bg-card border-t border-border mt-auto">
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-8">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Brand */}
           <div className="md:col-span-2">
@@ -60,12 +60,29 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-border mt-8 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div className="border-t border-border mt-6 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-muted-foreground text-sm">
             © 2025 Namma Flutter Chennai. All rights reserved.
           </p>
           <p className="text-muted-foreground text-sm flex items-center gap-1">
-            Made with <Heart className="h-4 w-4 text-destructive fill-destructive" /> by the Flutter Family
+            Built by{' '}
+            <a
+              href="https://www.linkedin.com/in/keerthana-m-g-12ba59256/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline"
+            >
+              Keerthana M G
+            </a>
+            {' '}and{' '}
+            <a
+              href="https://www.linkedin.com/in/hareesh-s-s-7478b1257/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-primary hover:underline"
+            >
+              Hareesh S S
+            </a>
           </p>
         </div>
       </div>

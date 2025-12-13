@@ -1,5 +1,6 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { useSearchParams } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ProductCard from '@/components/ProductCard';
@@ -7,6 +8,8 @@ import ProductFilters, { FilterState } from '@/components/ProductFilters';
 import { products } from '@/data/products';
 
 const Products = () => {
+  const [searchParams] = useSearchParams();
+
   const maxPrice = useMemo(
     () => Math.max(...products.map((p) => p.price)),
     []
@@ -29,15 +32,34 @@ const Products = () => {
     return Array.from(colorMap.values());
   }, []);
 
-  const [filters, setFilters] = useState<FilterState>({
-    sizes: [],
-    colors: [],
-    categories: [],
-    priceRange: [0, maxPrice],
-    showNew: false,
-    showBestsellers: false,
-    showFlutterCon: false,
+  const [filters, setFilters] = useState<FilterState>(() => {
+    const categoriesParam = searchParams.get('categories');
+    return {
+      sizes: [],
+      colors: [],
+      categories: categoriesParam ? [categoriesParam] : [],
+      priceRange: [0, maxPrice],
+      showNew: false,
+      showBestsellers: false,
+      showFlutterCon: false,
+    };
   });
+
+  // Update filters when URL params change
+  useEffect(() => {
+    const categoriesParam = searchParams.get('categories');
+    if (categoriesParam && !filters.categories.includes(categoriesParam)) {
+      setFilters((prev) => ({
+        ...prev,
+        categories: [categoriesParam],
+      }));
+    }
+  }, [searchParams]);
+
+  // Scroll to top when filters change
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [searchParams]);
 
   const filteredProducts = useMemo(() => {
     return products.filter((product) => {

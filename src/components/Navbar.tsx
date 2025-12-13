@@ -1,15 +1,13 @@
 import { Link, useLocation } from 'react-router-dom';
-import { ShoppingCart, Menu, X, Heart } from 'lucide-react';
+import { ShoppingCart, Menu, X } from 'lucide-react';
 import { useState } from 'react';
 import { useCart } from '@/contexts/CartContext';
-import { useWishlist } from '@/contexts/WishlistContext';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { totalItems } = useCart();
-  const { totalItems: wishlistItems } = useWishlist();
   const location = useLocation();
 
   const navLinks = [
@@ -61,30 +59,15 @@ const Navbar = () => {
 
           {/* Icons */}
           <div className="flex items-center gap-2">
-            <Link to="/wishlist">
-              <Button
-                variant="ghost"
-                size="icon"
-                className="relative hover:bg-primary/10"
-              >
-                {/* <Heart className="h-5 w-5" />
-                {wishlistItems > 0 && (
-                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-destructive text-destructive-foreground text-xs font-bold rounded-full flex items-center justify-center animate-bounce-in">
-                    {wishlistItems}
-                  </span>
-                )} */}
-              </Button>
-            </Link>
-
             <Link to="/cart">
               <Button
                 variant="ghost"
                 size="icon"
-                className="relative hover:bg-primary/10"
+                className="relative hover:bg-primary/10 h-12 w-12"
               >
-                <ShoppingCart className="h-5 w-5" />
+                <ShoppingCart className="h-6 w-6" />
                 {totalItems > 0 && (
-                  <span className="absolute -top-1 -right-1 w-5 h-5 bg-secondary text-secondary-foreground text-xs font-bold rounded-full flex items-center justify-center animate-bounce-in">
+                  <span className="absolute -top-1 -right-1 w-6 h-6 bg-secondary text-secondary-foreground text-xs font-bold rounded-full flex items-center justify-center animate-bounce-in">
                     {totalItems}
                   </span>
                 )}
