@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -8,40 +7,32 @@ import ProductFilters, { FilterState } from '@/components/ProductFilters';
 import { products } from '@/data/products';
 
 const Products = () => {
-  const { category } = useParams<{ category: string }>();
-  const categoryType = category === 'tshirts' ? 'tshirt' : 'hoodie';
-  const categoryTitle = category === 'tshirts' ? 'T-Shirts' : 'Hoodies';
-
-  const categoryProducts = useMemo(
-    () => products.filter((p) => p.category === categoryType),
-    [categoryType]
-  );
-
   const maxPrice = useMemo(
-    () => Math.max(...categoryProducts.map((p) => p.price)),
-    [categoryProducts]
+    () => Math.max(...products.map((p) => p.price)),
+    []
   );
 
   const availableSizes = useMemo(() => {
     const sizes = new Set<string>();
-    categoryProducts.forEach((p) => p.sizes.forEach((s) => sizes.add(s)));
+    products.forEach((p) => p.sizes.forEach((s) => sizes.add(s)));
     return Array.from(sizes).sort((a, b) => {
       const order = ['S', 'M', 'L', 'XL', 'XXL'];
       return order.indexOf(a) - order.indexOf(b);
     });
-  }, [categoryProducts]);
+  }, []);
 
   const availableColors = useMemo(() => {
     const colorMap = new Map<string, { name: string; hex: string }>();
-    categoryProducts.forEach((p) =>
+    products.forEach((p) =>
       p.colors.forEach((c) => colorMap.set(c.name, c))
     );
     return Array.from(colorMap.values());
-  }, [categoryProducts]);
+  }, []);
 
   const [filters, setFilters] = useState<FilterState>({
     sizes: [],
     colors: [],
+    categories: [],
     priceRange: [0, maxPrice],
     showNew: false,
     showBestsellers: false,
@@ -49,7 +40,11 @@ const Products = () => {
   });
 
   const filteredProducts = useMemo(() => {
-    return categoryProducts.filter((product) => {
+    return products.filter((product) => {
+      // Category filter
+      if (filters.categories.length > 0 && !filters.categories.includes(product.category)) {
+        return false;
+      }
       // Size filter
       if (filters.sizes.length > 0 && !filters.sizes.some((s) => product.sizes.includes(s))) {
         return false;
@@ -69,38 +64,40 @@ const Products = () => {
 
       return true;
     });
-  }, [categoryProducts, filters]);
+  }, [filters]);
 
   return (
     <>
       <Helmet>
-        <title>{categoryTitle} - Flutter Store | Namma Flutter Chennai</title>
-        <meta name="description" content={`Shop premium Flutter ${categoryTitle.toLowerCase()} from Namma Flutter Chennai. Quality apparel for Flutter developers.`} />
+        <title>Explore Products - Flutter Store | Namma Flutter Chennai</title>
+        <meta name="description" content="Shop premium Flutter merchandise from Namma Flutter Chennai. Quality apparel for Flutter developers." />
       </Helmet>
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/30">
         <Navbar />
         <main className="flex-1 py-8">
           <div className="container mx-auto px-4">
             {/* Header */}
-            <div className="mb-8 animate-fade-in">
-              <h1 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-2">
-                Flutter <span className="text-gradient-flutter">{categoryTitle}</span>
+            <div className="mb-8 animate-fade-in text-center">
+              <h1 className="font-heading text-4xl md:text-5xl font-bold text-foreground mb-3">
+                Explore <span className="text-gradient-flutter">Flutter Merch</span>
               </h1>
-              <p className="text-muted-foreground">
-                {filteredProducts.length} products found
+              <p className="text-muted-foreground text-lg">
+                {filteredProducts.length} awesome products found
               </p>
             </div>
 
             <div className="grid lg:grid-cols-4 gap-8">
               {/* Filters Sidebar */}
               <div className="lg:col-span-1">
-                <ProductFilters
-                  filters={filters}
-                  onFilterChange={setFilters}
-                  availableSizes={availableSizes}
-                  availableColors={availableColors}
-                  maxPrice={maxPrice}
-                />
+                <div className="sticky top-24">
+                  <ProductFilters
+                    filters={filters}
+                    onFilterChange={setFilters}
+                    availableSizes={availableSizes}
+                    availableColors={availableColors}
+                    maxPrice={maxPrice}
+                  />
+                </div>
               </div>
 
               {/* Products Grid */}
@@ -113,11 +110,13 @@ const Products = () => {
                   </div>
                 ) : (
                   <div className="text-center py-16 animate-fade-in">
-                    <p className="text-6xl mb-4">🔍</p>
-                    <h3 className="font-heading font-bold text-xl text-foreground mb-2">
+                    <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-muted flex items-center justify-center">
+                      <p className="text-7xl">🦅</p>
+                    </div>
+                    <h3 className="font-heading font-bold text-2xl text-foreground mb-2">
                       No products found
                     </h3>
-                    <p className="text-muted-foreground">
+                    <p className="text-muted-foreground text-lg">
                       Try adjusting your filters to find what you're looking for
                     </p>
                   </div>

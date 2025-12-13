@@ -6,6 +6,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import { getProductById, products } from '@/data/products';
 import { useCart } from '@/contexts/CartContext';
+import { useWishlist } from '@/contexts/WishlistContext';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
@@ -16,6 +17,7 @@ const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
   const product = getProductById(id || '');
   const { addToCart } = useCart();
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
 
   const [selectedSize, setSelectedSize] = useState<string>('');
   const [selectedColor, setSelectedColor] = useState<string>('');
@@ -52,6 +54,8 @@ const ProductDetail = () => {
     ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
     : 0;
 
+  const inWishlist = isInWishlist(product.id);
+
   const handleAddToCart = () => {
     if (!selectedSize) {
       toast.error('Please select a size');
@@ -78,13 +82,23 @@ const ProductDetail = () => {
     });
   };
 
+  const handleWishlist = () => {
+    if (inWishlist) {
+      removeFromWishlist(product.id);
+      toast.success('Removed from wishlist');
+    } else {
+      addToWishlist(product);
+      toast.success('Added to wishlist!');
+    }
+  };
+
   return (
     <>
       <Helmet>
         <title>{product.name} - Flutter Store</title>
         <meta name="description" content={product.description} />
       </Helmet>
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/30">
         <Navbar />
         <main className="flex-1 py-8">
           <div className="container mx-auto px-4">
@@ -108,7 +122,7 @@ const ProductDetail = () => {
                     alt={product.name}
                     className="w-full h-full object-cover"
                   />
-                  
+
                   {/* Badges */}
                   <div className="absolute top-4 left-4 flex flex-col gap-2">
                     {product.isNew && (
@@ -255,12 +269,17 @@ const ProductDetail = () => {
                     <ShoppingCart className="h-5 w-5 mr-2" />
                     Add to Cart
                   </Button>
-                  <Button size="lg" variant="outline">
-                    <Heart className="h-5 w-5" />
+                  {/* <Button
+                    size="lg"
+                    variant="outline"
+                    onClick={handleWishlist}
+                    className={inWishlist ? 'border-destructive text-destructive' : ''}
+                  >
+                    <Heart className={`h-5 w-5 ${inWishlist ? 'fill-current' : ''}`} />
                   </Button>
                   <Button size="lg" variant="outline">
                     <Share2 className="h-5 w-5" />
-                  </Button>
+                  </Button> */}
                 </div>
 
                 {/* Stock Info */}
