@@ -101,7 +101,7 @@ const ProductDetail = () => {
   return (
     <>
       <Helmet>
-        <title>{product.name} - Flutter Hub</title>
+        <title>{product.name} - Flutter Store</title>
         <meta name="description" content={product.description} />
       </Helmet>
       <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/30">
