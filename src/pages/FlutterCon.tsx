@@ -4,9 +4,14 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ProductCard from '@/components/ProductCard';
 import { products } from '@/data/products';
+import { useEffect } from 'react';
 
 const FlutterCon = () => {
   const flutterConProducts = products.filter((p) => p.flutterConExclusive);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   return (
     <>
@@ -43,9 +48,9 @@ const FlutterCon = () => {
                   <br />
                   <span className="text-primary-foreground/80">Chennai Edition</span>
                 </h1>
-                
+
                 <p className="text-primary-foreground/90 text-lg md:text-xl mb-8 max-w-2xl mx-auto">
-                  The biggest Flutter conference in Chennai is just around the corner! 
+                  The biggest Flutter conference in Chennai is just around the corner!
                   Grab your exclusive FlutterCon merchandise before they're gone.
                 </p>
 
@@ -143,7 +148,7 @@ const FlutterCon = () => {
                 Don't Miss Out! 🎉
               </h2>
               <p className="text-muted-foreground text-lg max-w-xl mx-auto">
-                FlutterCon 2025 is just a week away. Get your exclusive merchandise 
+                FlutterCon 2025 is just a week away. Get your exclusive merchandise
                 and be part of the biggest Flutter celebration in Chennai!
               </p>
             </div>

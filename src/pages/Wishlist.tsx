@@ -6,9 +6,14 @@ import Footer from '@/components/Footer';
 import { useWishlist } from '@/contexts/WishlistContext';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
+import { useEffect } from 'react';
 
 const Wishlist = () => {
     const { items, removeFromWishlist } = useWishlist();
+
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, []);
 
     const handleRemove = (id: string, name: string) => {
         removeFromWishlist(id);

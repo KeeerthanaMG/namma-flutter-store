@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ShoppingCart, Heart, Share2, Check, ChevronLeft, Minus, Plus, Star, Sparkles, Ticket } from 'lucide-react';
 import Navbar from '@/components/Navbar';
@@ -15,6 +15,7 @@ import ProductCard from '@/components/ProductCard';
 
 const ProductDetail = () => {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const product = getProductById(id || '');
   const { addToCart } = useCart();
   const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlist();
@@ -22,6 +23,11 @@ const ProductDetail = () => {
   const [selectedSize, setSelectedSize] = useState<string>('');
   const [selectedColor, setSelectedColor] = useState<string>('');
   const [quantity, setQuantity] = useState(1);
+
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [id]);
 
   if (!product) {
     return (
@@ -95,7 +101,7 @@ const ProductDetail = () => {
   return (
     <>
       <Helmet>
-        <title>{product.name} - Flutter Store</title>
+        <title>{product.name} - Flutter Hub</title>
         <meta name="description" content={product.description} />
       </Helmet>
       <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-muted/30">
@@ -104,13 +110,16 @@ const ProductDetail = () => {
           <div className="container mx-auto px-4">
             {/* Breadcrumb */}
             <div className="mb-6 animate-fade-in">
-              <Link
-                to={`/products/${product.category === 'hoodie' ? 'hoodies' : 'tshirts'}`}
+              <button
+                onClick={() => {
+                  navigate('/products?categories=' + product.category);
+                  setTimeout(() => window.scrollTo({ top: 0, behavior: 'smooth' }), 100);
+                }}
                 className="inline-flex items-center text-muted-foreground hover:text-primary transition-colors"
               >
                 <ChevronLeft className="h-4 w-4 mr-1" />
                 Back to {product.category === 'hoodie' ? 'Hoodies' : 'T-Shirts'}
-              </Link>
+              </button>
             </div>
 
             <div className="grid lg:grid-cols-2 gap-12 mb-16">

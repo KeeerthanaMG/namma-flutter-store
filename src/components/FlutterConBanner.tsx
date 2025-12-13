@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 
 const FlutterConBanner = () => {
   return (
-    <section className="py-16 md:py-24">
+    <section className="py-12 md:py-16">
       <div className="container mx-auto px-4">
         <div className="relative overflow-hidden rounded-3xl gradient-flutter p-8 md:p-12">
           {/* Background Pattern */}
@@ -29,9 +29,9 @@ const FlutterConBanner = () => {
               <h2 className="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary-foreground mb-4">
                 FlutterCon 2025 Chennai
               </h2>
-              
+
               <p className="text-primary-foreground/90 text-lg mb-6">
-                Get exclusive FlutterCon 2025 merchandise before they're gone! 
+                Get exclusive FlutterCon 2025 merchandise before they're gone!
                 Limited stock available for the biggest Flutter event in Chennai.
               </p>
 
@@ -47,24 +47,24 @@ const FlutterConBanner = () => {
               </div>
 
               <Link to="/fluttercon">
-                <Button size="lg" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 shadow-lg group">
-                  <Ticket className="h-5 w-5 mr-2" />
+                <Button size="lg" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 shadow-lg group px-8 py-6 text-lg">
+                  <Ticket className="h-6 w-6 mr-2" />
                   Shop FlutterCon Collection
-                  <ArrowRight className="h-5 w-5 ml-2 group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="h-6 w-6 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </Link>
             </div>
 
             <div className="hidden lg:flex justify-center">
               <div className="relative">
-                <div className="w-64 h-64 rounded-3xl bg-primary-foreground/10 backdrop-blur-sm flex items-center justify-center border border-primary-foreground/20 animate-float">
+                <div className="relative w-64 h-64 rounded-3xl bg-primary-foreground/10 backdrop-blur-sm flex items-center justify-center border border-primary-foreground/20 animate-float" style={{ animationDelay: '1s' }}>
                   <div className="text-center">
                     <Ticket className="h-16 w-16 text-primary-foreground mx-auto mb-4" />
                     <p className="text-xl font-heading font-bold text-primary-foreground">FlutterCon</p>
                     <p className="text-primary-foreground/80">2025</p>
                   </div>
                 </div>
-                <div className="absolute -bottom-4 -right-4 w-32 h-32 rounded-2xl bg-primary-foreground/10 backdrop-blur-sm flex items-center justify-center border border-primary-foreground/20 animate-float" style={{ animationDelay: '1s' }}>
+                <div className="absolute -top-4 -right-4 z-10 w-32 h-32 rounded-2xl bg-primary-foreground/10 backdrop-blur-sm flex items-center justify-center border border-primary-foreground/20 animate-float">
                   <span className="text-4xl">🎉</span>
                 </div>
               </div>
