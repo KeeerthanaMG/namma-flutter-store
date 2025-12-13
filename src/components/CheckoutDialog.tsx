@@ -60,7 +60,7 @@ const CheckoutDialog = ({ open, onOpenChange }: CheckoutDialogProps) => {
         // **IMPORTANT: Replace with your actual WhatsApp number**
         // Format: Country code + number (no +, no spaces, no dashes)
         // Example for India: '919876543210'
-        const whatsappNumber = '919876543210'; // <-- CHANGE THIS TO YOUR NUMBER
+        const whatsappNumber = '918778726685'; // <-- CHANGE THIS TO YOUR NUMBER
 
         // Create WhatsApp URL
         const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
