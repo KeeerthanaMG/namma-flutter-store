@@ -110,6 +110,7 @@
   body {
     @apply bg-background text-foreground font-sans antialiased;
     font-family: 'Nunito', sans-serif;
+    cursor: none !important;
   }
 
   h1,
@@ -119,6 +120,17 @@
   h5,
   h6 {
     font-family: 'Poppins', sans-serif;
+  }
+
+  /* Hide cursor on all interactive elements */
+  a,
+  button,
+  input,
+  textarea,
+  select,
+  [role="button"],
+  [role="link"] {
+    cursor: none !important;
   }
 }
 
@@ -159,11 +171,29 @@
 
     0%,
     100% {
-      transform: translateY(0);
+      transform: translateY(0) rotate(0deg);
     }
 
     50% {
-      transform: translateY(-10px);
+      transform: translateY(-10px) rotate(5deg);
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+
+    0%,
+    100% {
+      opacity: 0.5;
+      transform: scale(1);
+    }
+
+    50% {
+      opacity: 0.8;
+      transform: scale(1.1);
     }
   }
 }
