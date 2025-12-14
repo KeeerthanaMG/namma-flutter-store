@@ -108,58 +108,11 @@ const Blobs = () => {
 const Content = () => {
   return (
     <>
-      <div className="flex gap-[3rem] items-baseline">
-        <Left />
-        <Logo />
-        <Right />
-      </div>
+      <Logo />
       <Title />
       <Desc />
       <Buttons />
     </>
-  );
-};
-
-const Left = () => {
-  return (
-    <div className="space-y-[2rem] sm:mb-2">
-      <motion.img
-        initial={{
-          x: 80,
-          y: "50%",
-          rotate: -20,
-          opacity: 0,
-        }}
-        animate={{
-          x: 0,
-          y: "0",
-          rotate: 0,
-          opacity: 1,
-        }}
-        transition={{ delay: delayDuration + 0.2 }}
-        src="/3.jpg"
-        alt=""
-        className="w-10 sm:w-14 rounded drop-shadow-md drop-shadow-black/20 rotate-[-20deg]"
-      />
-      <motion.img
-        initial={{
-          x: 80,
-          y: "50%",
-          rotate: -20,
-          opacity: 0,
-        }}
-        animate={{
-          x: 0,
-          y: "0",
-          rotate: 0,
-          opacity: 1,
-        }}
-        transition={{ delay: delayDuration + 0.4 }}
-        src="/2.jpg"
-        alt=""
-        className="w-10 sm:w-14 rounded drop-shadow-md drop-shadow-black/20 rotate-[-20deg]"
-      />
-    </div>
   );
 };
 
@@ -184,36 +137,13 @@ const Logo = () => {
   );
 };
 
-const Right = () => {
-  return (
-    <div className="space-y-[2rem] sm:mb-2">
-      <motion.img
-        initial={{ x: -80, y: "100%", rotate: -20, opacity: 0 }}
-        animate={{ x: 0, y: "0", rotate: 0, opacity: 1 }}
-        transition={{ delay: delayDuration + 0.3 }}
-        src="/4.jpg"
-        alt=""
-        className="w-10 sm:w-14 rounded drop-shadow-md drop-shadow-black/20 rotate-[20deg]"
-      />
-      <motion.img
-        initial={{ x: -80, y: "100%", rotate: -20, opacity: 0 }}
-        animate={{ x: 0, y: "0", rotate: 0, opacity: 1 }}
-        transition={{ delay: delayDuration + 0.5 }}
-        src="/1.jpg"
-        alt=""
-        className="w-10 sm:w-14 rounded drop-shadow-md drop-shadow-black/20 rotate-[20deg]"
-      />
-    </div>
-  );
-};
-
 const Title = () => {
   return (
     <motion.h1
       variants={sentance}
       initial="hidden"
       animate="visible"
-      className="text-[3rem] sm:text-[6rem] -mt-8 sm:-mt-0 lg:text-[8rem] leading-[8rem] font-black tracking-tighter"
+      className="text-[2.5rem] sm:text-[4rem] md:text-[6rem] mt-6 sm:mt-8 md:mt-10 lg:text-[7rem] leading-tight sm:leading-[4rem] md:leading-[6rem] lg:leading-[7rem] font-black tracking-tighter"
     >
       {title.split("").map((char, index) => {
         const randomColor =
@@ -260,7 +190,7 @@ const Desc = () => {
       initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
       animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       transition={{ delay: delayDuration + 0.2 }}
-      className="text-center text-balance max-w-sm -mt-10 sm:-mt-0 sm:max-w-xl md:max-w-[50rem] text-[9px] sm:text-xs lg:text-sm opacity-80 font-medium lg:mt-1"
+      className="text-center text-balance max-w-sm mt-4 sm:max-w-xl md:max-w-[50rem] text-[9px] sm:text-xs lg:text-sm opacity-80 font-medium"
     >
       Official merchandise from the Namma Flutter Chennai community. Premium hoodies and t-shirts designed for Flutter enthusiasts.
     </motion.p>
