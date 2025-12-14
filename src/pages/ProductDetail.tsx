@@ -23,11 +23,24 @@ const ProductDetail = () => {
   const [selectedSize, setSelectedSize] = useState<string>('');
   const [selectedColor, setSelectedColor] = useState<string>('');
   const [quantity, setQuantity] = useState(1);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   // Scroll to top when component mounts
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [id]);
+
+  // Initialize selected color with first color
+  useEffect(() => {
+    if (product && product.colors.length > 0 && !selectedColor) {
+      setSelectedColor(product.colors[0].name);
+    }
+  }, [product, selectedColor]);
+
+  // Reset image index when color changes
+  useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [selectedColor]);
 
   if (!product) {
     return (
@@ -51,6 +64,11 @@ const ProductDetail = () => {
       </div>
     );
   }
+
+  // Get current images based on selected color
+  const currentImages = product.colorImages && selectedColor && product.colorImages[selectedColor]
+    ? product.colorImages[selectedColor]
+    : product.images;
 
   const relatedProducts = products
     .filter((p) => p.category === product.category && p.id !== product.id)
@@ -127,7 +145,7 @@ const ProductDetail = () => {
               <div className="animate-fade-in">
                 <div className="relative aspect-square rounded-3xl overflow-hidden bg-muted">
                   <img
-                    src={product.images[0]}
+                    src={currentImages[currentImageIndex]}
                     alt={product.name}
                     className="w-full h-full object-cover"
                   />
@@ -216,7 +234,10 @@ const ProductDetail = () => {
                     {product.colors.map((color) => (
                       <button
                         key={color.hex}
-                        onClick={() => setSelectedColor(color.name)}
+                        onClick={() => {
+                          setSelectedColor(color.name);
+                          setCurrentImageIndex(0);
+                        }}
                         className={cn(
                           'relative w-10 h-10 rounded-full border-2 transition-all duration-200 shadow-sm',
                           selectedColor === color.name
