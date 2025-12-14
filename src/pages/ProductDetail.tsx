@@ -292,7 +292,7 @@ const ProductDetail = () => {
                 {/* Actions */}
                 <div className="flex flex-col sm:flex-row gap-4">
                   <Button
-                    size="lg"
+                    size="default"
                     className="flex-1 gradient-flutter text-primary-foreground border-0 shadow-flutter hover:shadow-hover"
                     onClick={handleAddToCart}
                   >

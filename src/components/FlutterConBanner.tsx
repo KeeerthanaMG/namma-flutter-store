@@ -6,7 +6,7 @@ const FlutterConBanner = () => {
   return (
     <section className="py-12 md:py-16">
       <div className="container mx-auto px-4">
-        <div className="relative overflow-hidden rounded-3xl gradient-flutter p-8 md:p-12">
+        <div className="relative overflow-hidden rounded-3xl gradient-flutter p-4 md:p-12">
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 left-0 w-full h-full" style={{
@@ -21,7 +21,7 @@ const FlutterConBanner = () => {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary-foreground opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-primary-foreground"></span>
                 </span>
-                <span className="text-sm font-medium text-primary-foreground">
+                <span className="text-sm font-small text-primary-foreground">
                   Limited Edition Merchandise
                 </span>
               </div>
@@ -30,7 +30,7 @@ const FlutterConBanner = () => {
                 FlutterCon 2025 Chennai
               </h2>
 
-              <p className="text-primary-foreground/90 text-lg mb-6">
+              <p className="text-primary-foreground/90 pr-4 text-lg mb-6">
                 Get exclusive FlutterCon 2025 merchandise before they're gone!
                 Limited stock available for the biggest Flutter event in Chennai.
               </p>
@@ -47,7 +47,7 @@ const FlutterConBanner = () => {
               </div>
 
               <Link to="/fluttercon">
-                <Button size="lg" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 shadow-lg group px-8 py-6 text-lg">
+                <Button size="lg" className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 shadow-lg group px-8 py-6 text-md">
                   <Ticket className="h-6 w-6 mr-2" />
                   Shop FlutterCon Collection
                   <ArrowRight className="h-6 w-6 ml-2 group-hover:translate-x-1 transition-transform" />
