@@ -15,7 +15,7 @@ const Index = () => {
   return (
     <>
       <Helmet>
-        <title>Flutter Hub - Official Namma Flutter Chennai Merchandise</title>
+        <title>Flutter Store - Official Namma Flutter Chennai Merchandise</title>
         <meta name="description" content="Shop premium Flutter hoodies, t-shirts and merchandise from Namma Flutter Chennai community. Get exclusive FlutterCon 2025 collection." />
       </Helmet>
       <div className="min-h-screen flex flex-col">
